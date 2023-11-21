@@ -191,6 +191,21 @@ class TagsTable extends React.Component {
     this.filterList(search, this.state.instanceNumber);
   }
 
+  componentDidMount() {
+    // Log the displayData array to the console
+    console.log(this.state.displayData);
+
+    // Convert displayData to JSON format
+    const displayDataJSON = JSON.stringify(this.state.displayData, null, 2);
+
+    // Log the JSON-formatted data to the console
+    console.log(displayDataJSON);
+
+    // Optionally, you can store the JSON-formatted data in the component's state
+    this.setState({ displayDataJSON });
+  }
+
+
   render() {
     const { classes } = this.props;
     const { displayData, searchfor, sliderMin, sliderMax } = this.state;
