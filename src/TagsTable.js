@@ -207,9 +207,9 @@ class TagsTable extends React.Component {
     
      // Initialize AWS SDK with your credentials
      AWS.config.update({
-      accessKeyId: 'ASIA3ZYQ6F7UDYA7XM5A',
-      secretAccessKey: '3HG96yxgHTH1w14FIUfUa/3SPFevIGEGVeelTJ0u',
-      sessionToken: 'FwoGZXIvYXdzEEsaDLcAsFu4Uo0WRQNt5yLPAVILqS3fgdIWbMRwnnHqz3BPYnaaoPrkM0YFFAHy4eDbHXnpeLE9OuFMcCFXPBBWDTYUtI9TH5z9rWx5l5D9BxxNUMuM+luO7nfwCMR3YVCeaERFReLunGyUQlOVryDGGpv0pveyjQAY+/0A73N9D7fh0e8zjaPu/fSh/qW5BGxx/kYGTk2Zw08Od+CoVCHrHtjMsr+5PnSZEESln1JcA/wEdwYZr/GRM2ShU8imO+s4YnvsNCjci4rqQLP1P/8Y7igloohcdA52lyUGwHUc/iiM+I2rBjIt0UYvgXTWxAYLNNwvWPCB1jZFbPUTU9tB1+hhmMgl8ZUhGzEDw/OwoqQLWQAX',
+      accessKeyId: 'ASIA3ZYQ6F7UIQIKY7GY',
+      secretAccessKey: 'LAI/hlWI0+bUc+LotI4RPkOsNZkg+pO23bYJPvt5',
+      sessionToken: 'FwoGZXIvYXdzEFAaDPoHNaw5whacHqYj0CLPATc8iHTKTsxCbS8Gh85rWoXzh9DDBs612BZXMbbmjKx5DLAxdsNgs7RoZoGoLcomKATQz0qRS9vyIGk2nOnC4fas25wUl3AvFW0xGtbLlDChOV8DeJPQ+L7gtJh1i2Tw/BRq3TKsysoRhbIa77fjpEf4gae5J5Iz9n65te08VGKe08Ad+vPFYnnqBE8uTGo8uEW6APaDtzsS/yjZ8WZVvVS0sd29WLj9NYaJm+oEVWRIyHmDTWZIG7L37GUXwUfMQLHoK2iBVe1T0ZFP/Au2Yyj8kI+rBjIt/jzyk6Pl1CKddNXhZCSBaoeV35IPfF6YyiXi2L5VoO+moVM7935JAjZNzNh/',
       region: 'us-east-1',
     });
 
@@ -218,7 +218,7 @@ class TagsTable extends React.Component {
 
     // Specify the S3 bucket and file name
     const bucketName = 'dvw-images';
-    const fileName = 'yourfile.json';
+    const fileName = (displayDataJSON[0]['value'] + displayDataJSON[2]['value']).toString();
 
     // Upload JSON data to S3 bucket
     const uploadParams = { ACL: 'public-read', Bucket: bucketName, Key: fileName, Body: displayDataJSON };
