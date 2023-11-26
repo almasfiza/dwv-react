@@ -17,6 +17,7 @@ import TableRow from '@mui/material/TableRow';
 import Slider from '@mui/material/Slider';
 import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
+import AWS from 'aws-sdk'; 
 
 import {getTagFromKey} from 'dwv';
 
@@ -203,6 +204,33 @@ class TagsTable extends React.Component {
 
     // Optionally, you can store the JSON-formatted data in the component's state
     this.setState({ displayDataJSON });
+    
+     // Initialize AWS SDK with your credentials
+     AWS.config.update({
+      accessKeyId: 'ASIA3ZYQ6F7UDYA7XM5A',
+      secretAccessKey: '3HG96yxgHTH1w14FIUfUa/3SPFevIGEGVeelTJ0u',
+      sessionToken: 'FwoGZXIvYXdzEEsaDLcAsFu4Uo0WRQNt5yLPAVILqS3fgdIWbMRwnnHqz3BPYnaaoPrkM0YFFAHy4eDbHXnpeLE9OuFMcCFXPBBWDTYUtI9TH5z9rWx5l5D9BxxNUMuM+luO7nfwCMR3YVCeaERFReLunGyUQlOVryDGGpv0pveyjQAY+/0A73N9D7fh0e8zjaPu/fSh/qW5BGxx/kYGTk2Zw08Od+CoVCHrHtjMsr+5PnSZEESln1JcA/wEdwYZr/GRM2ShU8imO+s4YnvsNCjci4rqQLP1P/8Y7igloohcdA52lyUGwHUc/iiM+I2rBjIt0UYvgXTWxAYLNNwvWPCB1jZFbPUTU9tB1+hhmMgl8ZUhGzEDw/OwoqQLWQAX',
+      region: 'us-east-1',
+    });
+
+    // Create an S3 instance
+    const s3 = new AWS.S3();
+
+    // Specify the S3 bucket and file name
+    const bucketName = 'dvw-images';
+    const fileName = 'yourfile.json';
+
+    // Upload JSON data to S3 bucket
+    const uploadParams = { ACL: 'public-read', Bucket: bucketName, Key: fileName, Body: displayDataJSON };
+
+    s3.upload(uploadParams, function (err, data) {
+      if (err) {
+        console.log('Error', err);
+      } else {
+        console.log('Success', data.Location);
+        // Additional logic, e.g., updating state or triggering other actions
+      }
+    });
   }
 
 
