@@ -45,3 +45,5 @@ You can now open a browser at http://localhost:3000 and enjoy!
 This forked repository works on the implementing the cloud migration of the application to AWS.
 
 In addition to the original code, code has been modified to save the data tags generated from the uploaded image, to save it into database.
+
+This project is in requirement for the class CSCI5902 Fall 2023.
