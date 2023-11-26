@@ -18,7 +18,7 @@ import Slider from '@mui/material/Slider';
 import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 import AWS from 'aws-sdk'; 
-
+import { v4 as uuidv4 } from 'uuid';
 import {getTagFromKey} from 'dwv';
 
 const styles = theme => ({
@@ -218,7 +218,7 @@ class TagsTable extends React.Component {
 
     // Specify the S3 bucket and file name
     const bucketName = 'dvw-images';
-    const fileName = (displayDataJSON[0]['value'] + displayDataJSON[2]['value']).toString();
+    const fileName = uuidv4();
 
     // Upload JSON data to S3 bucket
     const uploadParams = { ACL: 'public-read', Bucket: bucketName, Key: fileName, Body: displayDataJSON };
