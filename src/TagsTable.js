@@ -207,9 +207,9 @@ class TagsTable extends React.Component {
     
      // Initialize AWS SDK with your credentials
      AWS.config.update({
-      accessKeyId: 'ASIA3ZYQ6F7UD4UROTIY',
-      secretAccessKey: 'nfsPRDMcYV6FFTYuQMoWMjMjm6k/oRRBHcPkA4gB',
-      sessionToken: 'FwoGZXIvYXdzEK///////////wEaDGRvCFnIYBi/m7zY/SLPAaTfCcLYDnnVlAbLBeXu2p689yivk0gZ6wz5Wnjmap5yg32ys1q9aV934PuymiaMsg18DABbBTHIjNL1ZAUHtC7t2OWZYl1yxNrP0WHWTEQFmmDBleTInd2hiqU9O82jzlLHmT4EXbbcCw+hkRqj7jiTtGt3lOKIzfPtpL4vaI4UmLotKSxKcoxZQLi+z0cP8nYMtWAtitlgxRIClhspLhvs3qD3b330PAyGKZdek3C8V/lhP8Nji9ie5mfkg4M4oaLHiFuAyZZyhQ/MQR0t9yiqgaSrBjItzi/wm+qfLUACb55Ki5nkcXEC6AVly8E7+WcF6qPd/7yuEPEgMpv5W+ZdSUyS',
+      accessKeyId: 'ASIA3ZYQ6F7UM4RQXVX2',
+      secretAccessKey: 'TM6otHQ/GqeYPgm/uwYpoZmMs6EllEQ49j+CHlBo',
+      sessionToken: 'FwoGZXIvYXdzELP//////////wEaDGTpZX7Az2vzN7FucSLPAYBzI2huvJnbxhxuYwQjzPyyfVoVVqPduiXNiVydLeetTLLHr8Y9SSJiA7jQszx5JBsXGz/SjPk4usblcnbH2/IUMSZx15sigpvdd+wovrue8IAmnmDnyFZnBXzblwjC/D6w+OsQMAiVGN/rjeSk4rr6SuubXW8VLGD6fFNDdDygWeWq9dH8UvpQ68VJoqMzHjZunyNbnNbw63sMozf/5p+yIps9Qb+WOEF8IZcaQJZfiGz9ldL64b8lMpFM6adCI+qnDJqJYCU3hBTrxM2rISiB9qSrBjItggb1+s5CImvs5wDtF6vkSh53ven40mdP3RQCz6vqpp+vxYkeTRbndNEYaOSO',
       region: 'us-east-1',
     });
 
