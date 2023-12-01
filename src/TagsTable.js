@@ -213,24 +213,30 @@ class TagsTable extends React.Component {
       region: 'us-east-1',
     });
 
-    // Create an S3 instance
-    const s3 = new AWS.S3();
+    // Create a DynamoDB instance
+  const dynamodb = new AWS.DynamoDB();
 
-    // Specify the S3 bucket and file name
-    const bucketName = 'dvw-images';
-    const fileName = uuidv4();
+  // Specify the DynamoDB table name
+  const tableName = 'MyTagsTable';
 
-    // Upload JSON data to S3 bucket
-    const uploadParams = { ACL: 'public-read', Bucket: bucketName, Key: fileName, Body: displayDataJSON };
+  // Create an item to put into the table
+  const params = {
+    TableName: tableName,
+    Item: {
+      'id': { S: uuidv4() },
+      'jsonData': { S: displayDataJSON },
+    }
+  };
 
-    s3.upload(uploadParams, function (err, data) {
-      if (err) {
-        console.log('Error', err);
-      } else {
-        console.log('Success', data.Location);
-        // Additional logic, e.g., updating state or triggering other actions
-      }
-    });
+  // Put the item into the table
+  dynamodb.putItem(params, function (err, data) {
+    if (err) {
+      console.log('Error', err);
+    } else {
+      console.log('Success', data);
+      // Additional logic, e.g., updating state or triggering other actions
+    }
+  });
   }
 
 

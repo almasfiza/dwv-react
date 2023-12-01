@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography';
 
 import Stack from '@mui/material/Stack';
 import LinearProgress from '@mui/material/LinearProgress';
-
+import { v4 as uuidv4 } from 'uuid';
 import Link from '@mui/material/Link';
 import IconButton from '@mui/material/IconButton';
 import ToggleButton from '@mui/material/ToggleButton';
@@ -27,7 +27,7 @@ import Slide from '@mui/material/Slide';
 import Toolbar from '@mui/material/Toolbar';
 
 import TagsTable from './TagsTable';
-
+import AWS from 'aws-sdk'; 
 import './DwvComponent.css';
 import {
   App,
@@ -61,6 +61,18 @@ class DwvComponent extends React.Component {
 
   constructor(props) {
     super(props);
+
+    
+
+// Configure AWS with your credentials
+AWS.config.update({
+  accessKeyId: 'ASIA3ZYQ6F7UM4RQXVX2',
+      secretAccessKey: 'TM6otHQ/GqeYPgm/uwYpoZmMs6EllEQ49j+CHlBo',
+      sessionToken: 'FwoGZXIvYXdzELP//////////wEaDGTpZX7Az2vzN7FucSLPAYBzI2huvJnbxhxuYwQjzPyyfVoVVqPduiXNiVydLeetTLLHr8Y9SSJiA7jQszx5JBsXGz/SjPk4usblcnbH2/IUMSZx15sigpvdd+wovrue8IAmnmDnyFZnBXzblwjC/D6w+OsQMAiVGN/rjeSk4rr6SuubXW8VLGD6fFNDdDygWeWq9dH8UvpQ68VJoqMzHjZunyNbnNbw63sMozf/5p+yIps9Qb+WOEF8IZcaQJZfiGz9ldL64b8lMpFM6adCI+qnDJqJYCU3hBTrxM2rISiB9qSrBjItggb1+s5CImvs5wDtF6vkSh53ven40mdP3RQCz6vqpp+vxYkeTRbndNEYaOSO',
+      region: 'us-east-1',
+});
+
+
     this.state = {
       versions: {
         dwv: getDwvVersion(),
@@ -434,8 +446,35 @@ class DwvComponent extends React.Component {
    */
   onDrop = (event) => {
     this.defaultHandleDragEvent(event);
-    // load files
-    this.state.dwvApp.loadFiles(event.dataTransfer.files);
+   
+
+    const s3 = new AWS.S3();
+const bucketName = 'dvw-images';
+
+    // Take only the first file if multiple files are dropped
+    const files = event.target.files;
+
+  
+    if (file) {
+      const params = {
+        Bucket: bucketName,
+        Key: uuidv4() + `${file.name}`, // Specify the desired path in your S3 bucket
+        Body: file,
+      };
+  
+      s3.upload(params, (err, data) => {
+        if (err) {
+          console.error('Error uploading to S3:', err);
+        } else {
+          console.log('File uploaded to S3:', data.Location);
+  
+          // If needed, you can trigger further actions after successful upload
+          // For example, you might want to store the S3 URL in your component state
+          // and use it elsewhere in your application.
+          this.setState({ s3FileUrl: data.Location });
+        }
+      });
+    }
   }
 
   /**
@@ -445,6 +484,34 @@ class DwvComponent extends React.Component {
   onInputFile = (event) => {
     if (event.target && event.target.files) {
       this.state.dwvApp.loadFiles(event.target.files);
+      console.log("file is uploaded.")
+      console.log(event.target.files)
+      const files = event.target.files;
+      const s3 = new AWS.S3();
+const bucketName = 'dvw-images';
+      // Take only the first file if multiple files are dropped
+      const file = files[0];
+    
+      if (file) {
+        const params = {
+          Bucket: bucketName,
+          Key: uuidv4() + `${file.name}`, // Specify the desired path in your S3 bucket
+          Body: file,
+        };
+    
+        s3.upload(params, (err, data) => {
+          if (err) {
+            console.error('Error uploading to S3:', err);
+          } else {
+            console.log('File uploaded to S3:', data.Location);
+    
+            // If needed, you can trigger further actions after successful upload
+            // For example, you might want to store the S3 URL in your component state
+            // and use it elsewhere in your application.
+            this.setState({ s3FileUrl: data.Location });
+          }
+        });
+      }
     }
   }
 
