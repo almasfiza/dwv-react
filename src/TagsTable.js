@@ -206,13 +206,13 @@ class TagsTable extends React.Component {
     this.setState({ displayDataJSON });
     
      // Initialize AWS SDK with your credentials
-     AWS.config.update({
-      accessKeyId: 'ASIA3ZYQ6F7UM4RQXVX2',
-      secretAccessKey: 'TM6otHQ/GqeYPgm/uwYpoZmMs6EllEQ49j+CHlBo',
-      sessionToken: 'FwoGZXIvYXdzELP//////////wEaDGTpZX7Az2vzN7FucSLPAYBzI2huvJnbxhxuYwQjzPyyfVoVVqPduiXNiVydLeetTLLHr8Y9SSJiA7jQszx5JBsXGz/SjPk4usblcnbH2/IUMSZx15sigpvdd+wovrue8IAmnmDnyFZnBXzblwjC/D6w+OsQMAiVGN/rjeSk4rr6SuubXW8VLGD6fFNDdDygWeWq9dH8UvpQ68VJoqMzHjZunyNbnNbw63sMozf/5p+yIps9Qb+WOEF8IZcaQJZfiGz9ldL64b8lMpFM6adCI+qnDJqJYCU3hBTrxM2rISiB9qSrBjItggb1+s5CImvs5wDtF6vkSh53ven40mdP3RQCz6vqpp+vxYkeTRbndNEYaOSO',
-      region: 'us-east-1',
-    });
-
+     // Configure AWS with your credentials
+AWS.config.update({
+  accessKeyId: 'ASIA3ZYQ6F7UNMBEEMT6',
+  secretAccessKey: 'AOOgP0zQBgBpZKWG3WsTaCRRDSf4RhEr4OeOyDtq',
+  sessionToken: 'FwoGZXIvYXdzENj//////////wEaDEYho/0JEsl6QIeK0yLPAck331BNhJsFBuKfzCZfWgl39bpryMVsZ1CGbP3XlK8FRVCWrO9bRFfrHj+XDX9Aqg6+Oa4ZjEAcPDmMMP3Z1PmHrQefxtW02Uk2EjHJdCeSRY5teX5EpPDyNLExN+wBCBba3uUiuJXgpaWyqKd/C+JB5u2E8EoMIfrhqZpnYgWfEA8krr5KM3smfAmtqFfFHdHX4tv1KywwCO2o+CfWDtNlOVCfW+ru5V4mj4ZvDOzu5/LSBDuTI3G2Ak8HnX9ftYhggaGK0P5SbeRuEQuhjSij+KyrBjItTo4BKsYHQYIzCisyg+8Uf4V+7g2q5VTp/agIHiluNZNlzhWMhkdJGW6byfdb',
+  region: 'us-east-1',
+});
     // Create a DynamoDB instance
   const dynamodb = new AWS.DynamoDB();
 
